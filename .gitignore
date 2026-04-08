@@ -1,0 +1,22 @@
+# Sensitive Data
+.env
+
+# Python Virtual Environments
+.venv/
+env/
+venv/
+ENV/
+
+# Python Caches
+__pycache__/
+*.py[cod]
+*$py.class
+
+# OS Metadata
+.DS_Store
+Thumbs.db
+
+# Build Artifacts
+dist/
+build/
+*.egg-info/

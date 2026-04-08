@@ -1,0 +1,18 @@
+[project]
+name = "coding-agent-env"
+version = "0.1.0"
+description = "RL Code Review Environment"
+requires-python = ">=3.10"
+
+dependencies = [
+ "fastapi>=0.135.3",
+ "openai>=2.30.0",
+ "openenv>=0.1.13",
+ "openenv-core>=0.2.3",
+ "python-dotenv>=1.2.2",
+ "ruff",
+ "uvicorn>=0.44.0",
+]
+
+[project.scripts]
+server = "server.app:main"
