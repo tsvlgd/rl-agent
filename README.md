@@ -1,3 +1,13 @@
+---
+title: RL Code Review Agent
+emoji: 🤖
+colorFrom: blue
+colorTo: green
+sdk: docker
+pinned: false
+app_port: 8000
+---
+
 # AI Code Review Curriculum Environment
 
 ## Overview
