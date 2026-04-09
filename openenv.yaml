@@ -9,12 +9,15 @@ tasks:
   - id: "easy"
     name: "PEP8 Fixer"
     difficulty: "easy"
+    grader: "graders.evaluate_agent_submission"
   - id: "medium"
     name: "Security Auditor"
     difficulty: "medium"
+    grader: "graders.evaluate_agent_submission"
   - id: "hard"
     name: "Logic Refactor"
     difficulty: "hard"
+    grader: "graders.evaluate_agent_submission"
 
 models:
   action: "models.CodeReviewAction"
