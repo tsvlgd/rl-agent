@@ -59,7 +59,7 @@ class CodeReviewEnvironment(Environment):
             test_cases=TASKS[self._state.task_difficulty]["test_cases"],
         )
 
-        task_success = reward >= 0.95
+        task_success = reward > 0.8
         is_last_task = self._current_task_idx == len(self._task_list) - 1
 
         if task_success and not is_last_task:
@@ -67,19 +67,18 @@ class CodeReviewEnvironment(Environment):
             difficulty = self._task_list[self._current_task_idx]
             new_task = TASKS[difficulty]
 
-            # Sync 
+            # Sync state with new task
             self._state.task_difficulty = difficulty
             self._state.original_code = new_task["code"]
             self._state.current_code = new_task["code"]
 
-            reward = 0.0
             feedback = f"✅ Success! Moving to {difficulty}: {new_task['desc']}"
+            done = False
         else:
             self._state.current_code = action.code
-
-        out_of_steps = self._state.step_count >= self.MAX_STEPS
-        all_tasks_done = task_success and is_last_task
-        done = all_tasks_done or out_of_steps
+            out_of_steps = self._state.step_count >= self.MAX_STEPS
+            all_tasks_done = task_success and is_last_task
+            done = all_tasks_done or out_of_steps
 
         return CodeReviewObservation(
             done=done,

@@ -35,7 +35,7 @@ load_dotenv()
 
 API_BASE_URL = os.getenv("API_BASE_URL", "https://router.huggingface.co/v1")
 ENV_URL = os.getenv("API_URL", "http://localhost:8000")
-MODEL_NAME = os.getenv("MODEL_NAME", "deepseek-ai/deepseek-coder-33b-instruct")
+MODEL_NAME = os.getenv("MODEL_NAME", "Qwen/Qwen2.5-Coder-7B-Instruct")
 HF_TOKEN = os.getenv("HF_TOKEN")
 
 ai_client = OpenAI(base_url=API_BASE_URL, api_key=HF_TOKEN)
