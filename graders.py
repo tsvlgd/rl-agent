@@ -129,6 +129,7 @@ def evaluate_agent_submission(
         feedback_quality = f"Ruff Execution Error: {res.stderr.strip()}"
 
     total_reward = ((0.5 * func_reward) + (0.5 * quality_reward)) * id_reward
+    strictly_between_0_1 = 0.01 + (total_reward * 0.98)
 
     combined_feedback = f"{id_feedback} | {feedback_func} | {feedback_quality}"
-    return float(total_reward), combined_feedback
+    return float(strictly_between_0_1), combined_feedback
