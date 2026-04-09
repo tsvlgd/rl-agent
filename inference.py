@@ -1,5 +1,29 @@
-import asyncio
+import subprocess
+import sys
 import os
+
+def install_deps():
+    try:
+        from openai import OpenAI
+        import openenv
+    except ImportError:
+        print("[INFO] Installing missing dependencies in sandbox...")
+        # Added --upgrade to ensure you get the right version
+        subprocess.check_call([
+            sys.executable, "-m", "pip", "install", "--upgrade", 
+            "openai>=2.30.0", 
+            "openenv-core>=0.2.3",
+            "python-dotenv"
+        ])
+        
+        import site
+        from importlib import reload
+        reload(site) 
+
+install_deps()
+
+import os
+import asyncio
 import textwrap
 from typing import List, Optional
 from openai import OpenAI
