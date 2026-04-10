@@ -30,7 +30,15 @@ def verify_structural_identity(original_code, submitted_code):
     except Exception as e:
         return 0.0, f"AST Error: {str(e)}"
 
-def evaluate_agent_submission(code: str, level: str, original_code: str, test_cases: list) -> tuple[float, str]:
+def evaluate_agent_submission(
+    code: str = "",
+    level: str = "easy",
+    original_code: str = "",
+    test_cases: list = None,
+) -> tuple[float, str]:
+    if test_cases is None:
+        test_cases = []
+    
     id_reward = 0.0
     func_reward = 0.0
     quality_reward = 0.0
@@ -79,7 +87,7 @@ def evaluate_agent_submission(code: str, level: str, original_code: str, test_ca
                     violations = json.loads(res.stdout)
                     quality_reward = 0.0 if level == "medium" else max(0.0, 1.0 - (len(violations) * 0.1))
                     feedback_parts.append(f"Quality: Found {len(violations)} issues.")
-                except:
+                except Exception:
                     quality_reward = 0.0
                     feedback_parts.append("Quality: Analysis failed.")
 

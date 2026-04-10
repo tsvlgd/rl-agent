@@ -1,18 +1,36 @@
-[project]
-name = "coding-agent-env"
-version = "0.1.0"
-description = "RL Code Review Environment"
-requires-python = ">=3.10"
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
 
+[project]
+name = "rl-code-review-agent"
+version = "0.1.0"
+description = "A 3-stage curriculum RL environment for code review using OpenEnv."
+readme = "README.md"
+requires-python = ">=3.11"
 dependencies = [
- "fastapi>=0.135.3",
- "openai>=2.30.0",
- "openenv>=0.1.13",
- "openenv-core>=0.2.3",
- "python-dotenv>=1.2.2",
- "ruff",
- "uvicorn>=0.44.0",
+  "fastapi>=0.110,<1",
+  "openenv-core>=0.2.0,<1",
+  "openai>=2.7.2,<3",
+  "pydantic>=2.7,<3",
+  "python-dotenv>=1.0,<2",
+  "requests>=2.31,<3",
+  "ruff>=0.1,<1",
+  "uvicorn[standard]>=0.30,<1",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.2,<9",
 ]
 
 [project.scripts]
 server = "server.app:main"
+
+[tool.setuptools]
+packages = ["server", "tasks"]
+py-modules = ["client", "inference", "models", "graders"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]

@@ -1,25 +1,23 @@
-version: "1.0.0"
-name: "code-review-curriculum"
-description: "A 3-stage curriculum training agents to fix PEP8, security, and complexity issues."
-version_tag: "v1"
-entry_point: "server.app:app"
+spec_version: 1
+name: rl_code_review_agent
+type: space
+runtime: fastapi
+app: server.app:app
+port: 8000
+description: "A 3-stage curriculum for PEP8, security, and complexity code review."
 
-# This is what the validator looks for to "count" your tasks
 tasks:
   - id: "easy"
     name: "PEP8 Fixer"
     difficulty: "easy"
     grader: "graders.evaluate_agent_submission"
+
   - id: "medium"
     name: "Security Auditor"
     difficulty: "medium"
     grader: "graders.evaluate_agent_submission"
+
   - id: "hard"
     name: "Logic Refactor"
     difficulty: "hard"
     grader: "graders.evaluate_agent_submission"
-
-models:
-  action: "models.CodeReviewAction"
-  observation: "models.CodeReviewObservation"
-  state: "models.CodeReviewState"
