@@ -1,19 +1,14 @@
 import os
 import sys
 import subprocess
-import asyncio
-from typing import List, Optional
-
-from openai import OpenAI
-from dotenv import load_dotenv
-
-from client import CodeReviewEnv
-from models import CodeReviewAction
 
 
 def install_deps():
+    """Install missing dependencies before importing them."""
     try:
+        import openai  # noqa: F401
         import openenv  # noqa: F401
+        from dotenv import load_dotenv  # noqa: F401
     except ImportError:
         print("[INFO] Installing missing dependencies...")
         subprocess.check_call([
@@ -24,7 +19,17 @@ def install_deps():
         ])
 
 
+# Install dependencies before any other imports
 install_deps()
+
+import asyncio  # noqa: E402
+from typing import List, Optional  # noqa: E402
+
+from openai import OpenAI  # noqa: E402
+from dotenv import load_dotenv  # noqa: E402
+
+from client import CodeReviewEnv  # noqa: E402
+from models import CodeReviewAction  # noqa: E402
 
 load_dotenv()
 
